@@ -2,66 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        
-        $datos=Cliente::all();
-        return $datos;
+        /*$clientes = Cliente::all();
+        return view('cliente.index', compact('clientes'));*/
+        $clientes = Cliente::orderBy('id', 'DESC')->paginate(2);
+
+        return view('cliente.index', compact('clientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(ClienteRequest $request)
     {
-        //
+        $datosValidos = $request->validated();
+
+        // Crear usuario con contraseña temporal
+        $user = User::create([
+            'documento' => $datosValidos['documento'],
+            'password' => bcrypt(Str::random(8)),
+            'rol' => 'cliente',
+            'estado' => 'activo',
+        ]);
+
+        // Crear cliente — agregamos el user_id a los datos validados
+        $datosValidos['user_id'] = $user->id;
+        Cliente::create($datosValidos);
+
+        return redirect()->route('cliente.index')
+            ->with('success', 'Cliente registrado correctamente.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(ClienteRequest $request, $id)
     {
-        //
-    }
+        $cliente = Cliente::findOrFail($id);
+        $cliente->update($request->validated());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cliente $cliente)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cliente $cliente)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cliente $cliente)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cliente $cliente)
-    {
-        //
+        return redirect()->route('cliente.index')
+            ->with('success', 'Cliente actualizado correctamente.');
     }
 }

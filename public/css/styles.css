@@ -1,0 +1,378 @@
+/* ───────── RESET GENERAL (Configuración base de toda la página) ───────── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ───────── LAYOUT GENERAL DE LA APLICACIÓN ───────── */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ───────── SIDEBAR (MENÚ LATERAL) ───────── */
+.sidebar {
+    width: 200px;
+    background: #1F4E79;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    min-height: 100vh;
+}
+
+/* Header del sidebar (logo y nombre) */
+.sidebar-header {
+    padding: 16px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Logo del sidebar */
+.sidebar-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+/* Texto del título en sidebar */
+.sidebar-title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ───────── SECCIÓN USUARIO EN SIDEBAR ───────── */
+.sidebar-user {
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* usuario */
+.sidebar-avatar img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Texto del rol usuario */
+.sidebar-user p {
+    color: #B5D4F4;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* ───────── NAVEGACIÓN DEL SIDEBAR ───────── */
+.sidebar-nav {
+    flex: 1;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Items del menú */
+.nav-item {
+    display: flex;
+    padding: 11px 16px;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+/* Hover items menú */
+.nav-item:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+/* Item activo del menú */
+.nav-item.active {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border-left: 3px solid #B5D4F4;
+    font-weight: 500;
+}
+
+/* ───────── FOOTER DEL SIDEBAR (BOTÓN CERRAR SESIÓN) ───────── */
+.sidebar-footer {
+    padding: 14px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Botón cerrar sesión*/
+.btn-logout {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.7);
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+/* ───────── CONTENIDO PRINCIPAL (MAIN) ───────── */
+.main {
+    flex: 1;
+    background: #F4F6F9;
+    padding: 24px;
+}
+
+/* Header de cada página */
+.main-header {
+    margin-bottom: 20px;
+}
+
+/* Título de página */
+.page-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1F4E79;
+}
+
+/* ───────── ALERTAS DEL SISTEMA ───────── */
+.alert-success {
+    background: #EAF3DE;
+    border: 1px solid #97C459;
+    color: #3B6D11;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.alert-error {
+    background: #FAECE7;
+    border: 1px solid #F0997B;
+    color: #993C1D;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.alert-error ul {
+    padding-left: 16px;
+}
+
+/* ───────── CARDS (CONTENEDORES DE CONTENIDO) ───────── */
+.card {
+    background: #fff;
+    border-radius: 8px;
+    border: 0.5px solid #ddd;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+/* ───────── BOTONES GENERALES ───────── */
+.btn {
+
+    height: 34px;
+    padding: 0 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+    text-decoration: none;
+}
+
+/* Botones del formulario */
+.form-actions .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+}
+
+.btn:hover { opacity: 0.85; }
+
+/* Tipos de botones */
+.btn-primary   { background: #1F4E79; color: #fff; }
+.btn-secondary { background: #147229; color: #a9f3ac; }
+.btn-warning   { background: #EF9F27; color: #fff; }
+.btn-refresh   { background: none; border: 1px solid #ccc; color: #666; width: 34px; padding: 0; font-size:16px; }
+
+/* ───────── FORMULARIOS ───────── */
+.form-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+/* Grid del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+}
+
+/* Grupo de campos */
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+/* Etiquetas */
+.form-group label {
+    font-size: 12px;
+    color: #333;
+    font-weight: 500;
+    min-width: 80px;
+    font-style: italic;
+}
+
+/* Inputs y selects */
+.form-group input,
+.form-group select {
+    flex: 1;
+    height: 30px;
+    border: 1px solid #1F4E79;
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 12px;
+    background: #fff;
+    color: #333;
+}
+
+/* Focus campos */
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #378ADD;
+    box-shadow: 0 0 0 2px rgba(55,138,221,0.15);
+}
+
+/* ───────── TABLA DE CLIENTES ───────── */
+.table-wrap {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 0.5px solid #ddd;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+/* Encabezado tabla */
+thead {
+    background: #4472C4;
+}
+
+thead th {
+    color: #fff;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Filas tabla */
+tbody tr {
+    border-bottom: 0.5px solid #e8e8e8;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+tbody tr:hover { background: #E6F1FB; }
+tbody tr:nth-child(even) { background: #f7f7f7; }
+tbody tr:nth-child(even):hover { background: #E6F1FB; }
+
+tbody td {
+    padding: 9px 12px;
+    color: #333;
+}
+
+/* ───────── BADGES DE ESTADO ───────── */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.badge-active   { background: #EAF3DE; color: #3B6D11; }
+.badge-inactive { background: #FAECE7; color: #993C1D; }
+
+/* ───────── ICONOS DEL MENÚ ───────── */
+.nav-item i {
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+/* Hover del menú lateral */
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 25px;
+}
+
+/* Ruta activa del menú */
+.nav-item.active {
+    background-color: #0056b3;
+    border-left: 4px solid #ffffff;
+}
+
+/* ───────── PAGINACIÓN ───────── */
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    gap: 5px;
+    margin: 15px 0;
+    padding: 0;
+}
+
+/* Botones de paginación */
+.pagination li, 
+.pagination span, 
+.pagination a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background: #fff;
+}
+
+/* Hover paginación */
+.pagination a:hover {
+    background-color: #bbcdee;
+}
+
+/* Página activa */
+.pagination .active span {
+    background-color: #1F4E79;
+    color: #fff;
+    border-color: #1F4E79;
+}

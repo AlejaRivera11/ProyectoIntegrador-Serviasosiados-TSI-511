@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_documento', ['TI','CC','CE','PT','PE']);
+            $table->enum('tipo_documento', ['TI', 'CC', 'CE', 'PT', 'PE']);
             $table->string('documento')->unique();
             $table->string('nombre_cliente');
             $table->string('telefono_cliente');
-            $table->string('correo_cliente')->unique(); 
+            $table->string('correo_cliente')->unique();
             $table->string('direccion_cliente');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
