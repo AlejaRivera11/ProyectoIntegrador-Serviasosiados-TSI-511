@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vehiculos', function (Blueprint $table) {
+        Schema::create('servicios', function (Blueprint $table) {
             $table->id();
-            $table->string('marca');
-            $table->string('modelo');
-            $table->string('referencia');
-            $table->string('placa',6)->unique();
-            $table->string('color');
-            $table->string('kilometraje');
-            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->string('nombre');
+            $table->string('descripcion')->nullable();
+              $table->string('tiempo');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vehiculos');
+        Schema::dropIfExists('servicios');
     }
 };
