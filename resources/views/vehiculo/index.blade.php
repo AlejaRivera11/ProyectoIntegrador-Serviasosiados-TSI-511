@@ -10,7 +10,7 @@
     <button class="btn btn-refresh" onclick="limpiarFormularioVehiculo()" title="Limpiar">↺</button>
     <button class="btn btn-primary" onclick="submitRegistrarVehiculo()">Registrar</button>
     <button class="btn btn-warning" onclick="submitActualizarVehiculo()">Actualizar</button>
-    {{-- " target="_blank" class="btn btn-secondary">Exportar</a>--}}
+    <a href="{{ route('pdf.vehiculos') }}" target="_blank" class="btn btn-secondary">Exportar</a>
   </div>
 
 {{-- Formulario --}}
