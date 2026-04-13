@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
+use App\Http\Requests\VehiculoRequest;
 use App\Models\vehiculo;
 use Illuminate\Http\Request;
 
@@ -12,23 +14,30 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $vehiculos = Vehiculo::orderBy('id', 'DESC')->paginate(2);
+
+        return view('vehiculo.index', compact('vehiculos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+   
+    public function store(VehiculoRequest $request)
     {
-        //
+    $datosValidos = $request->validated();
+
+    // Buscar el cliente por documento
+    $clientes = Cliente::where('documento', $datosValidos['cliente_id'])->first();
+
+    if (!$clientes) {
+        return redirect()->back()->with('error', 'No existe un cliente con ese documento.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    // Reemplazar el documento por el id real
+    $datosValidos['cliente_id'] = $clientes->id;
+
+    Vehiculo::create($datosValidos);
+
+    return redirect()->route('vehiculo.index')
+                     ->with('success', 'Vehiculo registrado correctamente.');
     }
 
     /**
@@ -50,9 +59,12 @@ class VehiculoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, vehiculo $vehiculo)
+    public function update(VehiculoRequest $request, vehiculo $vehiculo)
     {
-        //
+        $datosValidos = $request->validated();
+        $vehiculo->update($datosValidos);
+        return redirect()->route('vehiculo.index')
+            ->with('success', 'Vehículo actualizado correctamente.');
     }
 
     /**

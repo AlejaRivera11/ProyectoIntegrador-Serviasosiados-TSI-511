@@ -39,7 +39,8 @@
                     <i class="fas fa-users"></i> Clientes
                 </a>
 
-                <a href="" class="nav-item">
+                <a href="{{ route('vehiculo.index') }}"
+                    class="nav-item {{ request()->routeIs('vehiculo.*') ? 'active' : '' }}">
                     <i class="fas fa-car"></i> Vehículos
                 </a>
 
