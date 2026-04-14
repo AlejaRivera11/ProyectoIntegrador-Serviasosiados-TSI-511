@@ -14,4 +14,5 @@ Route::resource('/cliente', ClienteController::class);
 Route::resource('/vehiculo', VehiculoController::class);
 
 Route::get('/pdf/clientes', [PdfController::class, 'pdfClientes'])->name('pdf.clientes');
+
 Route::get('/pdf/vehiculos', [PdfController::class, 'pdfVehiculo'])->name('pdf.vehiculos');

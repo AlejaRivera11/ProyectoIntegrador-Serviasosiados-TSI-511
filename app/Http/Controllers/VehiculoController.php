@@ -2,42 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
 use App\Http\Requests\VehiculoRequest;
+use App\Models\Cliente;
 use App\Models\vehiculo;
-use Illuminate\Http\Request;
 
 class VehiculoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+ 
     public function index()
     {
-        $vehiculos = Vehiculo::orderBy('id', 'DESC')->paginate(2);
-
+        $vehiculos = vehiculo::orderBy('id', 'DESC')->paginate(2);
         return view('vehiculo.index', compact('vehiculos'));
     }
 
-   
     public function store(VehiculoRequest $request)
     {
-    $datosValidos = $request->validated();
+        $datosValidos = $request->validated();
+        
+        $clientes = Cliente::where('documento', $datosValidos['cliente_id'])->first(); // Buscar el cliente por document
+        if (! $clientes) {
+            return redirect()->back()->with('error', 'No existe un cliente con ese documento.');
+        }
+        $datosValidos['cliente_id'] = $clientes->id;   // Reemplazar el documento por el id real
+        vehiculo::create($datosValidos);
 
-    // Buscar el cliente por documento
-    $clientes = Cliente::where('documento', $datosValidos['cliente_id'])->first();
-
-    if (!$clientes) {
-        return redirect()->back()->with('error', 'No existe un cliente con ese documento.');
-    }
-
-    // Reemplazar el documento por el id real
-    $datosValidos['cliente_id'] = $clientes->id;
-
-    Vehiculo::create($datosValidos);
-
-    return redirect()->route('vehiculo.index')
-                     ->with('success', 'Vehiculo registrado correctamente.');
+        return redirect()->route('vehiculo.index')
+            ->with('success', 'Vehiculo registrado correctamente.');
     }
 
     /**
@@ -62,9 +52,17 @@ class VehiculoController extends Controller
     public function update(VehiculoRequest $request, vehiculo $vehiculo)
     {
         $datosValidos = $request->validated();
+        $cliente = Cliente::where('documento', $datosValidos['cliente_id'])->first();
+
+        if (! $cliente) {
+            return redirect()->back()->with('error', 'No existe un cliente con ese documento.');
+        }
+
+        $datosValidos['cliente_id'] = $cliente->id;
         $vehiculo->update($datosValidos);
+
         return redirect()->route('vehiculo.index')
-            ->with('success', 'Vehículo actualizado correctamente.');
+            ->with('success', 'Vehiculo actualizado correctamente.');
     }
 
     /**

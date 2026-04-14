@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VehiculoRequest extends FormRequest
@@ -14,17 +13,17 @@ class VehiculoRequest extends FormRequest
 
     public function rules(): array
     {
-            $id = $this->route('vehiculo')?->id;
-    
-            return [
-                'placa' => 'required|unique:vehiculos,placa,'.$id,
-                'marca' => 'required',
-                'referencia' => 'required',
-                'modelo' => 'required',
-                'color' => 'required',
-                'kilometraje' => 'required|integer',
-                'cliente_id' => 'required|exists:clientes,documento',
-            ];
+        $id = $this->route('vehiculo')?->id;
+
+        return [
+            'placa' => 'required|unique:vehiculos,placa,'.$id,
+            'marca' => 'required',
+            'referencia' => 'required',
+            'modelo' => 'required',
+            'color' => 'required',
+            'kilometraje' => 'required|integer',
+            'cliente_id' => 'required|exists:clientes,documento',
+        ];
     }
 
     public function messages(): array
