@@ -8,7 +8,6 @@ function seleccionarCliente(id, tipo, doc, nombre, tel, correo, dir) {
     document.getElementById('correo_cliente').value = correo;
     document.getElementById('direccion_cliente').value = dir;
 
-    // Cambiar el action del formulario para actualizar
     document.getElementById('form-cliente').action = '/cliente/' + id;
     document.getElementById('form-method').value   = 'PUT';
 }
@@ -24,8 +23,6 @@ function seleccionarVehiculo(id, placa, marca, modelo, referencia, color, kilome
     document.getElementById('kilometraje').value   = kilometraje;
     document.getElementById('cliente_id').value  = cliente_id;
 
-
-    // Cambiar el action del formulario para actualizar
     document.getElementById('form-vehiculo').action = '/vehiculo/' + id;
     document.getElementById('form-method').value   = 'PUT';
 }
@@ -68,7 +65,7 @@ function submitActualizarVehiculo() {
     document.getElementById('form-vehiculo').submit();
 }
 
-// Limpiar formulario
+// Limpiar formulario Cliente
 function limpiarFormulario() {
     document.getElementById('form-cliente').reset();
     document.getElementById('cliente_id').value  = '';
@@ -106,7 +103,7 @@ function buscarVehiculo() {
     });
 }
 
-// Buscar en tiempo real mientras escribe (solo para clientes por ahora)
+// Buscar en tiempo real mientras escribe (clientes)
 document.addEventListener('DOMContentLoaded', function() {
     const inputBusqueda = document.getElementById('input-busqueda');
     if (inputBusqueda) {
@@ -114,10 +111,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Buscar en tiempo real mientras escribe (solo para vehiculos por ahora)
+// Buscar en tiempo real mientras escribe (vehiculos)
 document.addEventListener('DOMContentLoaded', function() {
     const inputBusqueda = document.getElementById('input-busqueda');
     if (inputBusqueda) {
         inputBusqueda.addEventListener('keyup', buscarVehiculo);
+    }
+});
+
+// Menú hamburguesa
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle  = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('slidebar') ?? document.querySelector('.sidebar');
+    const overlay = document.getElementById('overlay');
+
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        });
+
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        });
     }
 });

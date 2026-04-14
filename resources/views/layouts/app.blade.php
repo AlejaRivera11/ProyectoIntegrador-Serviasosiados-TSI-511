@@ -12,6 +12,10 @@
 
 <body>
 
+    {{-- Botón hamburguesa --}}
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+    <div class="overlay" id="overlay"></div>
+
     <div class="layout">
 
         {{-- SIDEBAR --}}
@@ -64,7 +68,6 @@
                     <i class="fas fa-user-cog"></i> Gestión de usuarios
                 </a>
 
-                {{-- Solo Administrador --}}
                 @if (auth()->user()?->rol === 'administrador')
                     <a href="" class="nav-item">Reportes</a>
                     <a href="" class="nav-item">Servicios</a>
@@ -107,7 +110,6 @@
                 </div>
             @endif
 
-            {{-- Contenido de cada vista --}}
             @yield('contenido')
 
         </main>
