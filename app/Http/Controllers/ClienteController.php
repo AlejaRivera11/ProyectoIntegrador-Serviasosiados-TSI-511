@@ -12,7 +12,7 @@ class ClienteController extends Controller
     public function index()
     {
 
-        $clientes = Cliente::orderBy('id', 'DESC')->paginate(2);
+        $clientes = Cliente::orderBy('id', 'DESC')->paginate(4);
 
         return view('cliente.index', compact('clientes'));
     }
@@ -37,7 +37,7 @@ class ClienteController extends Controller
             ->with('success', 'Cliente registrado correctamente.');
     }
 
-    public function update(ClienteRequest $request, $id)
+    public function update(ClienteRequest $request, Mecanico $mecanico)
     {
         $cliente = Cliente::findOrFail($id);
         $cliente->update($request->validated());

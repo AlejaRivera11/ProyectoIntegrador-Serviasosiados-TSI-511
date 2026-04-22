@@ -8,7 +8,8 @@ use App\Models\vehiculo;
 
 class VehiculoController extends Controller
 {
- 
+
+
     public function index()
     {
         $vehiculos = vehiculo::orderBy('id', 'DESC')->paginate(2);
