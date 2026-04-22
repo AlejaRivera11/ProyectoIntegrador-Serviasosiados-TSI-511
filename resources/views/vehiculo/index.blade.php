@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
 @section('titulomain', 'Vehículos')
 
@@ -6,11 +6,21 @@
 
     <div class="card">
         {{-- Botones de acción --}}
+
         <div class="form-actions">
-            <button class="btn btn-refresh" onclick="limpiarFormularioVehiculo()" title="Limpiar">↺</button>
-            <button class="btn btn-primary" onclick="submitRegistrarVehiculo()">Registrar</button>
-            <button class="btn btn-warning" onclick="submitActualizarVehiculo()">Actualizar</button>
-            <a href="{{ route('pdf.vehiculos') }}" target="_blank" class="btn btn-secondary">Exportar</a>
+            <button class="btn btn-refresh" onclick="limpiarFormularioVehiculo()" title="Limpiar campos">↺</button>
+
+            <button class="btn btn-primary" onclick="submitRegistrarVehiculo()" title="Registrar nuevo vehículo">
+                <i class="fa-solid fa-plus"></i> Registrar
+            </button>
+
+            <button class="btn btn-warning" onclick="submitActualizarVehiculo()" title="Guardar cambios">
+                <i class="fa-solid fa-pen-to-square"></i> Actualizar
+            </button>
+
+            <a href="{{ route('pdf.vehiculos') }}" target="_blank" class="btn btn-secondary" title="Exportar a PDF">
+                <i class="fa-solid fa-file-export"></i> Exportar
+            </a>
         </div>
 
         {{-- Formulario --}}
@@ -117,3 +127,7 @@
     </div>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/scriptVehiculo.js') }}"></script>
+@endpush

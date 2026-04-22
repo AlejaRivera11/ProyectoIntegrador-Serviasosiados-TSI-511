@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MecanicoRequest;
 use App\Models\mecanico;
-use Illuminate\Http\Request;
 
 class MecanicoController extends Controller
 {
@@ -13,53 +13,35 @@ class MecanicoController extends Controller
     public function index()
     {
         //
-    }
+        $mecanicos = mecanico::orderBy('id', 'DESC')->paginate(4);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('mecanico.index', compact('mecanicos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MecanicoRequest $request)
     {
         //
-    }
+        $datosValidos = $request->validated();
+        mecanico::create($datosValidos);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(mecanico $mecanico)
-    {
-        //
-    }
+        return redirect()->route('mecanico.index')
+            ->with('success', 'Mecanico registrado correctamente.');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(mecanico $mecanico)
-    {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, mecanico $mecanico)
+    public function update(MecanicoRequest $request, $id)
     {
         //
-    }
+        $mecanico = mecanico::findOrFail($id);
+        $mecanico->update($request->validated());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(mecanico $mecanico)
-    {
-        //
+        return redirect()->route('mecanico.index')
+            ->with('success', 'Mecanico actualizado correctamente.');
     }
 }

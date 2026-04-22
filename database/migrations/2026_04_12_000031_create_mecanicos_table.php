@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('mecanicos', function (Blueprint $table) {
             $table->id();
-            
+            $table->enum('tipo_documento', ['TI', 'CC', 'CE', 'PT', 'PE']);
+            $table->string('documento_mecanico')->unique();
+            $table->string('nombre_mecanico');
+            $table->string('telefono_mecanico');
+            $table->string('direccion_mecanico');
             $table->timestamps();
         });
     }

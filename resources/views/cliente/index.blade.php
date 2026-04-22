@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
 @section('titulomain', 'Clientes')
 
@@ -8,9 +8,12 @@
         {{-- Botones de acción --}}
         <div class="form-actions">
             <button class="btn btn-refresh" onclick="limpiarFormulario()" title="Limpiar">↺</button>
-            <button class="btn btn-primary" onclick="submitRegistrar()">Registrar</button>
-            <button class="btn btn-warning" onclick="submitActualizar()">Actualizar</button>
-            <a href="{{ route('pdf.clientes') }}" target="_blank" class="btn btn-secondary">Exportar</a>
+            <button class="btn btn-primary" onclick="submitRegistrar()">
+                <i class="fa-solid fa-plus"></i> Registrar</button>
+            <button class="btn btn-warning" onclick="submitActualizar()">
+                <i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
+            <a href="{{ route('pdf.clientes') }}" target="_blank" class="btn btn-secondary" title="Exportar a PDF">
+                <i class="fa-solid fa-file-export"></i> Exportar</a>
         </div>
 
         {{-- Formulario --}}
@@ -24,11 +27,11 @@
                     <label>Tipo Doc.</label>
                     <select name="tipo_documento" id="tipo_documento">
                         <option value="">Seleccionar</option>
-                        <option value="CC">CC</option>
-                        <option value="TI">TI</option>
-                        <option value="CE">CE</option>
-                        <option value="PT">PT</option>
-                        <option value="PE">PE</option>
+                        <option value="CC">CC-Cedula de ciudadanía</option>
+                        <option value="TI">TI-Tarjeta de identidad</option>
+                        <option value="CE">CE-Cedula de extranjería</option>
+                        <option value="PT">PT-Pasaporte</option>
+                        <option value="PE">PE-Permiso especial</option>
                     </select>
                 </div>
 
@@ -122,3 +125,7 @@
     </div>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/scriptCliente.js') }}"></script>
+@endpush
