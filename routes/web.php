@@ -6,6 +6,8 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\ServicioController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +21,9 @@ Route::get('/dashboard', function () {
 Route::get('inicio', function () {
     return view('inicio');
 })->name('inicio');
+Route::get('servicio', [ServicioController::class, 'index'])->name('servicio.index');
+Route::post('servicio', [ServicioController::class, 'store'])->name('servicio.store');
+Route::put('servicio/{servicio}', [ServicioController::class, 'update'])->name('servicio.update');
 
 Route::middleware('auth')->group(function () {
 
