@@ -26,6 +26,11 @@ class User extends Authenticatable
         'estado',
     ];
 
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class, 'user_id', 'id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

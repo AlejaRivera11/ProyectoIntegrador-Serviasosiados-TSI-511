@@ -14,7 +14,7 @@
 
 /* ───────── SIDEBAR (MENÚ LATERAL) ───────── */
 .sidebar {
-    width: 200px;
+    width: 250px;
     background: #1F4E79;
     display: flex;
     flex-direction: column;
@@ -253,6 +253,8 @@
     border-color: #378ADD;
     box-shadow: 0 0 0 2px rgba(55,138,221,0.15);
 }
+
+
 
 /* ───────── TABLAS ───────── */
 .table-wrap {

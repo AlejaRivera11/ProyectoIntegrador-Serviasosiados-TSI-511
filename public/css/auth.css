@@ -12,8 +12,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-     position: relative;
-    overflow: hidden;
+    position: relative;
+    overflow: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -40,6 +44,7 @@ body::before {
     width: 100%;
     max-width: 420px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.589);
+    
 }
 
 /* ───────── LOGO Y TÍTULO ───────── */
@@ -165,10 +170,25 @@ body::before {
     padding-left: 16px;
 }
 
+.alert-success {
+    background: #EAF3DE;
+    border: 1px solid #97C459;
+    color: #3B6D11;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+
+.alert-success ul {
+    padding-left: 16px;
+}
+
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 480px) {
     .auth-card {
         margin: 20px;
         padding: 28px 20px;
+        
     }
 }

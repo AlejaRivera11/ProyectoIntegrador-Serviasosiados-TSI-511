@@ -1,0 +1,73 @@
+
+.main-content{
+width: 600px;
+    margin: 40px auto;
+}
+.card-perfil{
+
+    width: 500px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 0.5px solid #ddd;
+    padding: 18px;
+    margin-bottom: 18px;
+    
+}
+
+
+/* ───────── FORMULARIOS ───────── */
+
+/* Grid del formulario */
+.form-grid-perfil {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Grupo de campos */
+.form-group-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.form-group-perfil.full {
+    grid-column: 1 / -1;
+}
+
+/* Etiquetas */
+.form-group-perfil label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    min-width: 80px;
+    font-style: italic;
+}
+
+/* Inputs y selects */
+.form-group-perfil input,
+.form-group-perfil select {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #1F4E79;
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 14px;
+    background: #fff;
+    color: #333;
+}
+/* Focus campos */
+.form-group-perfil input:focus,
+.form-group-perfil select:focus {
+    outline: none;
+    border-color: #378ADD;
+    box-shadow: 0 0 0 2px rgba(55,138,221,0.15);
+}
+
+.form-group-perfil input:disabled,
+.form-group-perfil select:disabled {
+    background: #f0f0f0;
+    color: #666;
+    border-color: #ccc;
+}
