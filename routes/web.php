@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PerfilClienteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VehiculoController;
@@ -10,13 +11,17 @@ use App\Http\Controllers\ServicioController;
 
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 Route::get('inicio', function () {
     return view('inicio');
@@ -74,6 +79,27 @@ Route::middleware('auth')->group(function () {
     Route::put('mecanico/{mecanico}', [MecanicoController::class, 'update'])
         ->name('mecanico.update')
         ->middleware('can:mecanico.update');
+
+    // Perfil Cliente
+    // Datos Personales
+    Route::get('perfilCliente', [PerfilClienteController::class, 'index'])
+        ->name('perfilCliente.datosPersonales')
+        ->middleware('can:perfilCliente.datosPersonales');
+    Route::put('perfilCliente', [PerfilClienteController::class, 'update'])
+        ->name('perfilCliente.datosPersonales.update')
+        ->middleware('can:perfilCliente.datosPersonales.update');
+
+    // Mis Vehiculos
+
+    Route::get('misVehiculos', [VehiculoController::class, 'misVehiculos'])
+        ->name('perfilCliente.misVehiculos')
+        ->middleware('can:perfilCliente.misVehiculos');
+    Route::post('misVehiculos', [VehiculoController::class, 'storeVehiculo'])
+        ->name('perfilCliente.misVehiculos.storeVehiculos')
+        ->middleware('can:perfilCliente.misVehiculos.storeVehiculo');
+    Route::put('misVehiculos/{vehiculo}', [VehiculoController::class, 'updateVehiculo'])
+        ->name('perfilCliente.misVehiculos.updateVehiculo')
+        ->middleware('can:perfilCliente.misVehiculos.updateVehiculo');
 
     // PDF
     Route::get('/pdf/clientes', [PdfController::class, 'pdfClientes'])->name('pdf.clientes');

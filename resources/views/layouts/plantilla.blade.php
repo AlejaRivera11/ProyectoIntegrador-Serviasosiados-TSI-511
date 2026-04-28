@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/inicio.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/perfilCliente.css') }}">
 </head>
 
 <body>
@@ -43,10 +44,12 @@
                     <a href="{{ route('inicio') }}" class="nav-item {{ request()->routeIs('inicio') ? 'active' : '' }}">
                         <i class="fas fa-home"></i> Inicio
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('perfilCliente.datosPersonales') }}"
+                        class="nav-item {{ request()->routeIs('perfilCliente') ? 'active' : '' }}">
                         <i class="fas fa-user"></i> Datos Personales
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('perfilCliente.misVehiculos') }}"
+                        class="nav-item {{ request()->routeIs('perfilCliente.misVehiculos') ? 'active' : '' }}">
                         <i class="fas fa-car"></i> Mis Vehiculos
                     </a>
                     <a href="" class="nav-item">
@@ -56,7 +59,8 @@
                         <i class="fas fa-calendar-check"></i> Mis Citas
                     </a>
                 @elseif(auth()->user()?->hasRole('recepcionista'))
-                    <a href="{{ route('inicio') }}" class="nav-item {{ request()->routeIs('inicio') ? 'active' : '' }}">
+                    <a href="{{ route('inicio') }}"
+                        class="nav-item {{ request()->routeIs('inicio') ? 'active' : '' }}">
                         <i class="fas fa-home"></i> Inicio
                     </a>
 

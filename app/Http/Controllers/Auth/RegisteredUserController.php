@@ -62,8 +62,9 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect()->route('inicio');
+        return redirect()->route('register')
+            ->with('success', 'La cuenta ha sido creada exitosamente.');
     }
 }

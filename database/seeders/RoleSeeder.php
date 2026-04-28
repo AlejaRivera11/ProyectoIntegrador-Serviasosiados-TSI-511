@@ -39,5 +39,12 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'mecanico.store'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'mecanico.update'])->syncRoles([$roleAdmin]);
 
+        // Perfil Cliente
+        Permission::create(['name' => 'perfilCliente.datosPersonales'])->syncRoles([$roleCliente]);
+        Permission::create(['name' => 'perfilCliente.datosPersonales.update'])->syncRoles([$roleCliente]);
+        
+        Permission::create(['name' => 'perfilCliente.misVehiculos'])->syncRoles([$roleCliente]);
+        Permission::create(['name' => 'perfilCliente.misVehiculos.storeVehiculo'])->syncRoles([$roleCliente]);
+        Permission::create(['name' => 'perfilCliente.misVehiculos.updateVehiculo'])->syncRoles([$roleCliente]);
     }
 }

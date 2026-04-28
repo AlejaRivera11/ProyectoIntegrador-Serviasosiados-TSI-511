@@ -1,0 +1,592 @@
+/* =============================================
+   styles.css – Landing Page Serviasociados
+   ============================================= */
+
+/* ── Reset básico ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ── Contenedor general ── */
+.contenedor {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── Títulos de sección ── */
+h2 {
+  font-size: 1.8rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  text-align: center;
+  color: white;
+  font-size: 0.95rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.subtitulo-sesion {
+  text-align: center;
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+header {
+  background-color: #1F4E79;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+.nav-contenedor{
+    width: 100%;   
+    position: fixed;
+    top:0;
+    display: flex;
+    background-color:  #1F4E79;
+    z-index: 1000;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+}
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.logo span{
+    color: white;
+    font-weight: bold;
+
+}
+.sidebar-logo {
+    width: 33px;
+    height: 33px;
+    object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  padding: 0 20px;
+}
+
+.nav-links a {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+  color:   #32699c;
+}
+
+/* =============================================
+   SECCIÓN INICIO (HERO)
+   ============================================= */
+.seccion-inicio {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.800)),
+                    url("../img/Fondo.png");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 20px;
+  text-align: center;
+  border-bottom: 4px solid  #1F4E79;
+}
+
+.seccion-inicio h1 {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.seccion-inicio p {
+  color: #ddd;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+
+.inicio-botones {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-principal {
+  background-color:  #1F4E79;
+  color: #fff;
+  padding: 11px 26px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.btn-principal:hover {
+  background-color:  #32699c;
+}
+
+.btn-secundario {
+  background-color: #fff;
+  color: #333;
+  padding: 11px 26px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+}
+
+.btn-secundario:hover {
+  border-color:  #32699c;
+  color: #32699c;
+}
+
+/* =============================================
+   SECCIÓN PARALLAX
+   ============================================= */
+.seccion-parallax {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.241), rgba(0, 0, 1, 0.777));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* efecto parallax: imagen fija al hacer scroll */
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.parallax-contenido {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.parallax-contenido h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+
+.parallax-contenido p {
+  color: #ddd;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* =============================================
+   FONDOS ALTERNADOS
+   ============================================= */
+.seccion-gris {
+  background-color: #f7f7f7;
+  padding: 70px 20px;
+  
+}
+
+
+.seccion-blanca {
+  background-color: #fff;
+  padding: 70px 20px;
+}
+
+/* =============================================
+   TARJETAS (Servicios y Testimonios)
+   ============================================= */
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.tarjeta {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: 3px solid #1F4E79;
+  border-radius: 8px;
+  padding: 24px 20px;
+  flex: 1 1 calc(33% - 20px);
+  min-width: 220px;
+  max-width: 300px;
+}
+
+.tarjeta:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.icono {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  color: #1F4E79;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); /* sombra */
+  display: inline-block;
+  transition: 0.3s;
+   
+}
+
+.icono:hover {
+    transform: scale(1.2); 
+}
+
+.tarjeta h3 {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.tarjeta p {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Testimonios */
+.testimonio {
+  border-top-color: #1F4E79;
+  max-width: 300px;
+}
+
+
+p.estrellas {
+  color: gold;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.texto-testimonio {
+  font-style: italic;
+  color: #555;
+  font-size: 0.87rem;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.autor {
+  font-size: 0.82rem;
+  color: #888;
+}
+
+/* =============================================
+   NOSOTROS
+   ============================================= */
+.nosotros-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.nosotros-texto {
+  flex: 1 1 400px;
+}
+
+.nosotros-texto p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.lista-beneficios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lista-beneficios li {
+  font-size: 0.9rem;
+  color: #444;
+  padding-left: 4px;
+}
+
+.nosotros-stats {
+  flex: 1 1 240px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.stat {
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 8px;
+  padding: 24px 16px;
+  flex: 1 1 calc(50% - 16px);
+  min-width: 100px;
+  text-align: center;
+}
+
+.stat-numero {
+  display: block;
+  font-size: 1.9rem;
+  font-weight: bold;
+  color:  #679ed2;
+  margin-bottom: 6px;
+}
+
+.stat-texto {
+  font-size: 0.78rem;
+  color: white;
+}
+
+/* =============================================
+   CONTACTO
+   ============================================= */
+.contacto-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.contacto-info {
+  flex: 1 1 320px;
+}
+
+.contacto-info h3,
+.contacto-form h3 {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.lista-contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lista-contacto li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.lista-contacto li > span {
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.lista-contacto strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #1a1a1a;
+  margin-bottom: 3px;
+}
+
+.lista-contacto p {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Formulario de contacto */
+.contacto-form {
+  flex: 1 1 320px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+  outline: none;
+  border-color:  #1F4E79;
+}
+
+.contacto-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.contacto-form button {
+  background-color:  #1F4E79;
+  color: #fff;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.contacto-form button:hover {
+  background-color: #32699c;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+footer {
+  background-color: #1F4E79;
+  color: #aaa;
+  padding: 40px 20px 0;
+}
+
+.footer-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid white;
+}
+
+.footer-marca {
+  flex: 1 1 200px;
+  font-size: 1rem;
+  color: white;
+  
+}
+
+.footer-marca span {
+  color:  white;
+  font-size: 1.2rem;
+  
+  
+}
+
+.footer-marca p {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: white;
+  line-height: 1.6;
+}
+
+.footer-nav,
+.footer-datos {
+  flex: 1 1 160px;
+}
+
+.footer-nav h4,
+.footer-datos h4 {
+  color: white;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-nav a {
+  color: white;
+  font-size: 0.85rem;
+}
+
+.footer-nav a:hover {
+  color:  #32699c;
+}
+
+.footer-datos p {
+  font-size: 0.82rem;
+  color: white;
+  margin-bottom: 7px;
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 18px 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: white;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+  .seccion-inicio h1 {
+    font-size: 1.7rem;
+  }
+
+  .nosotros-grid,
+  .contacto-grid {
+    flex-direction: column;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  /* Ocultar links intermedios en móvil y dejar solo Inicio y Contacto */
+  .nav-links li:nth-child(2),
+  .nav-links li:nth-child(3),
+  .nav-links li:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tarjeta {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .stat {
+    flex: 1 1 100%;
+  }
+
+  .seccion-inicio h1 {
+    font-size: 1.4rem;
+  }
+}

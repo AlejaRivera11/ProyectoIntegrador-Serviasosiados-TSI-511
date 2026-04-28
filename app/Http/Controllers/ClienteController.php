@@ -29,6 +29,8 @@ class ClienteController extends Controller
             'estado' => 'activo',
         ]);
 
+        $user->assignRole('cliente');
+
         // Crear cliente — agregamos el user_id a los datos validados
         $datosValidos['user_id'] = $user->id;
         Cliente::create($datosValidos);

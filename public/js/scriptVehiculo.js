@@ -11,6 +11,7 @@ function seleccionarVehiculo(id, placa, marca, modelo, referencia, color, kilome
 
     document.getElementById('form-vehiculo').action = '/vehiculo/' + id;
     document.getElementById('form-method').value   = 'PUT';
+
 }
 
 // Registrar nuevo vehiculo
@@ -58,3 +59,5 @@ document.addEventListener('DOMContentLoaded', function() {
         inputBusqueda.addEventListener('keyup', buscarVehiculo);
     }
 });
+
+//

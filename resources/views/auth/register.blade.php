@@ -15,6 +15,13 @@
 
         {{-- Título --}}
         <div class="auth-title">Crear Cuenta</div>
+        {{-- Mensaje de éxito --}}
+
+        @if (session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         {{-- Errores --}}
         @if ($errors->any())
