@@ -2,64 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\servicio;
-use Illuminate\Http\Request;
+use App\Models\Servicio;
+use App\Http\Requests\ServicioRequest;
 
 class ServicioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $servicios = Servicio::orderBy('id', 'DESC')->paginate(5);
+        return view('servicio.index', compact('servicios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(ServicioRequest $request)
     {
-        //
+        Servicio::create($request->validated());
+
+        return redirect()->route('servicio.index')
+                         ->with('success', 'Servicio registrado correctamente.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(ServicioRequest $request, Servicio $servicio)
     {
-        //
-    }
+        $servicio->update($request->validated());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(servicio $servicio)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(servicio $servicio)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, servicio $servicio)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(servicio $servicio)
-    {
-        //
+        return redirect()->route('servicio.index')
+                         ->with('success', 'Servicio actualizado correctamente.');
     }
 }
