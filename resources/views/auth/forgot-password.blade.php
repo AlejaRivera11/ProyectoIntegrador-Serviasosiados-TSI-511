@@ -44,8 +44,8 @@
             @csrf
             <div class="auth-group">
                 <label>Correo electronico</label>
-                <input type="email" name="email" value="{{ old('email') }}" placeholder="correo@email.com" required
-                    autofocus>
+                <input type="email" name="correo_cliente" value="{{ old('correo_cliente') }}"
+                    placeholder="correo@email.com" required autofocus>
             </div>
             <button type="submit" class="auth-btn">Enviar enlace de recuperacion</button>
         </form>

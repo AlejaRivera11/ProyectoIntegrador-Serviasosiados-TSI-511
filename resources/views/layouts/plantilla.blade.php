@@ -32,9 +32,13 @@
             {{-- Usuario --}}
             <div class="sidebar-user">
                 <div class="sidebar-avatar">
-                    <img src="{{ asset('img/usuario.png') }}" alt="avatar">
+                    <img src="{{ asset('img/usuario3.png') }}" alt="avatar">
                 </div>
-                <p>{{ auth()->user()?->rol ?? 'Usuario' }}</p>
+                <p>
+                    {{ auth()->user()?->cliente?->nombre_cliente ??
+                        (ucfirst(auth()->user()?->getRoleNames()->first()) ?? 'Usuario') }}
+                </p>
+
             </div>
 
             {{-- Navegación según rol --}}
@@ -101,7 +105,8 @@
                     <a href="" class="nav-item">
                         <i class="fas fa-chart-line"></i> Reportes
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('servicio.index') }}"
+                        class="nav-item {{ request()->routeIs('servicio.*') ? 'active' : '' }}">
                         <i class="fas fa-wrench"></i> Servicios
                     </a>
                     <a href="{{ route('mecanico.index') }}"

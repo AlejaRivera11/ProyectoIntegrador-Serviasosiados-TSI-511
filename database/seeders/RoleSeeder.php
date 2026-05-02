@@ -30,10 +30,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'usuario.store'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'usuario.update'])->syncRoles([$roleAdmin]);
 
-        // Permisos de Servicios
-        Permission::create(['name' => 'servicio.index'])->syncRoles([$roleAdmin]);
-        Permission::create(['name' => 'servicio.store'])->syncRoles([$roleAdmin]);
-
         //  Permisos de Mecanicos
         Permission::create(['name' => 'mecanico.index'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'mecanico.store'])->syncRoles([$roleAdmin]);
@@ -42,9 +38,14 @@ class RoleSeeder extends Seeder
         // Perfil Cliente
         Permission::create(['name' => 'perfilCliente.datosPersonales'])->syncRoles([$roleCliente]);
         Permission::create(['name' => 'perfilCliente.datosPersonales.update'])->syncRoles([$roleCliente]);
-        
+
         Permission::create(['name' => 'perfilCliente.misVehiculos'])->syncRoles([$roleCliente]);
         Permission::create(['name' => 'perfilCliente.misVehiculos.storeVehiculo'])->syncRoles([$roleCliente]);
         Permission::create(['name' => 'perfilCliente.misVehiculos.updateVehiculo'])->syncRoles([$roleCliente]);
+
+        // Permisos para servicios
+        Permission::create(['name' => 'servicio.index'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'servicio.store'])->syncRoles([$roleAdmin]);
+        Permission::create(['name' => 'servicio.update'])->syncRoles([$roleAdmin]);
     }
 }

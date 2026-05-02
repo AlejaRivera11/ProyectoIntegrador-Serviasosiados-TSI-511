@@ -25,20 +25,22 @@ class PerfilClienteRequest extends FormRequest
         $cliente = auth()->user()->cliente;
 
         return [
-            'telefono_cliente'  => 'required',
-            'correo_cliente'    => 'required|email|unique:clientes,correo_cliente,'.$cliente->id,
+            'telefono_cliente' => 'required',
+            'correo_cliente' => 'required|email|unique:clientes,correo_cliente,'.$cliente->id,
             'direccion_cliente' => 'required',
+            'password' => 'nullable|min:8', // opcional
         ];
     }
 
     public function messages(): array
     {
         return [
-            'telefono_cliente.required'  => 'El telefono es obligatorio.',
-            'correo_cliente.required'    => 'El correo es obligatorio.',
-            'correo_cliente.email'       => 'El correo no tiene un formato valido.',
-            'correo_cliente.unique'      => 'Este correo ya esta registrado.',
+            'telefono_cliente.required' => 'El telefono es obligatorio.',
+            'correo_cliente.required' => 'El correo es obligatorio.',
+            'correo_cliente.email' => 'El correo no tiene un formato valido.',
+            'correo_cliente.unique' => 'Este correo ya esta registrado.',
             'direccion_cliente.required' => 'La direccion es obligatoria.',
+            'password.min' => 'La contrasena debe tener minimo 8 caracteres.',
         ];
     }
 }

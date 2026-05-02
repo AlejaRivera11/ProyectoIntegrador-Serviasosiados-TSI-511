@@ -11,6 +11,11 @@
 
 <body>
 
+    <a href="{{ route('welcome') }}" class="back-link">
+        <img src="{{ asset('img/flecha.png') }}" alt="Volver">
+    </a>
+
+
     <div class="auth-card">
 
         {{-- Título --}}

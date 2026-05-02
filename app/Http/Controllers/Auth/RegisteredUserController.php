@@ -44,6 +44,8 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'documento' => $request->documento,
+            'correo_cliente' => $request->correo_cliente, // 👈 ESTE FALTABA
+            'email' => $request->correo_cliente,
             'password' => Hash::make($request->password),
             'rol' => 'cliente',
             'estado' => 'activo',
