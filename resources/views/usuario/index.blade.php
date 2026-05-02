@@ -26,6 +26,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Correo</label>
+                    <input type="email" name="correo_cliente" id="correo_cliente" placeholder="Correo electronico">
+                </div>
+
+                <div class="form-group">
                     <label>Contraseña</label>
                     <div style="flex:1; position:relative;">
                         <input type="password" name="password" id="password" placeholder="Contraseña" style="width:100%;">
@@ -71,6 +76,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Documento</th>
+                        <th>Correo</th>
                         <th>Contraseña</th>
                         <th>Rol</th>
                         <th>Estado</th>
@@ -82,15 +88,20 @@
                             onclick="seleccionarUsuario(
                         '{{ $usuario->id }}',
                         '{{ $usuario->documento }}',
+                        '{{ $usuario->correo_cliente }}',
+                        '{{ $usuario->password }}',
                         '{{ $usuario->rol }}',
                         '{{ $usuario->estado }}'
                     )">
                             <td>{{ $usuario->id }}</td>
                             <td>{{ $usuario->documento }}</td>
+                            <td>{{ $usuario->correo_cliente }}</td>
                             <td>{{ $usuario->password }}</td>
                             <td>{{ $usuario->rol }}</td>
+                            <td>{{ $usuario->estado }}</td>
                             <td>
-                                <span class="badge {{ $usuario->estado === 'activo' ? 'badge-active' : 'badge-inactive' }}">
+                                <span
+                                    class="badge {{ $usuario->estado === 'activo' ? 'badge-active' : 'badge-inactive' }}">
                                     {{ $usuario->estado }}
                                 </span>
                             </td>

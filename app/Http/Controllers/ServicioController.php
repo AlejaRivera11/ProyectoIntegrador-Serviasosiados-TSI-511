@@ -28,4 +28,5 @@ class ServicioController extends Controller
         return redirect()->route('servicio.index')
                          ->with('success', 'Servicio actualizado correctamente.');
     }
+    
 }

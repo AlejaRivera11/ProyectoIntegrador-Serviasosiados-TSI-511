@@ -51,10 +51,27 @@
                             value="{{ old('correo_cliente', $cliente->correo_cliente) }}">
                     </div>
 
+                    <div class="form-group-perfil">
+                        <label>Contraseña</label>
+                        <div style="flex:1; position:relative;">
+                            <input type="password" name="password" id="password" placeholder="Contraseña"
+                                style="width:460px;">
+                            <span onclick="togglePassword()"
+                                style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;">
+                                👁
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
             </form>
         </div>
 
     </main>
 
+
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/scriptUsuario.js') }}"></script>
+@endpush

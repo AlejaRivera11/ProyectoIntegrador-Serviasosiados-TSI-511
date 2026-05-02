@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPasswordNotification;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'documento',
+        'correo_cliente',
+        'email',
         'password',
         'rol',
         'estado',
@@ -29,6 +32,11 @@ class User extends Authenticatable
     public function cliente()
     {
         return $this->hasOne(Cliente::class, 'user_id', 'id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 
     /**
@@ -52,5 +60,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getEmailAttribute()
+    {
+        return $this->correo_cliente;
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'correo_cliente';
     }
 }

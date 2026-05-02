@@ -39,21 +39,21 @@ class LoginRequest extends FormRequest
      *
      * @throws ValidationException
      */
-
     public function authenticate(): void
-{
-    $this->ensureIsNotRateLimited();
+    {
 
-    if (! Auth::attempt($this->only('documento', 'password'), $this->boolean('remember'))) {
-        RateLimiter::hit($this->throttleKey());
+        $this->ensureIsNotRateLimited();
 
-        throw ValidationException::withMessages([
-            'documento' => 'El documento o contraseña son incorrectos.',
-        ]);
+        if (! Auth::attempt($this->only('documento', 'password'), $this->boolean('remember'))) {
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'documento' => 'El documento o contraseña son incorrectos.',
+            ]);
+        }
+
+        RateLimiter::clear($this->throttleKey());
     }
-
-    RateLimiter::clear($this->throttleKey());
-}
 
     /**
      * Ensure the login request is not rate limited.
@@ -71,7 +71,8 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            // 'email' => trans('auth.throttle',
+            'documento' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -81,8 +82,15 @@ class LoginRequest extends FormRequest
     /**
      * Get the rate limiting throttle key for the request.
      */
+    // public function throttleKey(): string
+    // {
+    //     return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+    // }
+
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(
+            Str::lower($this->string('documento')).'|'.$this->ip()
+        );
     }
 }

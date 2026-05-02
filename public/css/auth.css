@@ -184,6 +184,24 @@ body::before {
     padding-left: 16px;
 }
 
+.back-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.back-link img {
+    width: 35px;
+    filter: brightness(0) invert(1); /* blanca */
+    opacity: 0.8;
+}
+
+.back-link img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 480px) {
     .auth-card {

@@ -17,7 +17,9 @@
         <div class="inicio-linea"></div>
 
         <p class="inicio-bienvenida">
-            Bienvenido, <strong>{{ auth()->user()?->rol ?? 'Usuario' }}</strong>
+            Bienvenido,
+            <strong>{{ auth()->user()?->cliente?->nombre_cliente ??
+                (ucfirst(auth()->user()?->getRoleNames()->first()) ?? 'Usuario') }}</strong>
         </p>
 
     </div>
