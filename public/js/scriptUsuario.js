@@ -5,9 +5,10 @@ function togglePassword() {
 }
 
 // Seleccionar usuario de la tabla
-function seleccionarUsuario(id, documento, rol, estado) {
+function seleccionarUsuario(id, documento, correo_cliente, password, rol, estado) {
     document.getElementById('usuario_id').value  = id;
     document.getElementById('documento').value   = documento;
+    document.getElementById('correo_cliente').value = correo_cliente;
     document.getElementById('password').value    = password;
     document.getElementById('rol').value         = rol;
     document.getElementById('estado').value      = estado;

@@ -1,40 +1,75 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="es">
 
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña — Serviasociados</title>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required
-                autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+</head>
+
+<body>
+
+    <div class="auth-card">
+
+        {{-- LOGO --}}
+        <div class="auth-logo">
+            <img src="{{ asset('img/Logo2.png') }}" alt="Logo Serviasociados">
+            <h1>SERVIASOCIADOS</h1>
+            <p>Experiencia y Responsabilidad</p>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="auth-title">Restablecer contraseña</div>
+
+        {{-- ERRORES --}}
+        @if ($errors->any())
+            <div class="auth-error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('password.store') }}">
+            @csrf
+
+            {{-- TOKEN --}}
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+            {{-- EMAIL --}}
+            <div class="auth-group">
+                <label>Correo electrónico</label>
+                <input type="email" name="email" value="{{ old('email', $request->email) }}"
+                    placeholder="correo@email.com" required autofocus>
+            </div>
+
+            {{-- PASSWORD --}}
+            <div class="auth-group">
+                <label>Nueva contraseña</label>
+                <input type="password" name="password" placeholder="Nueva contraseña" required>
+            </div>
+
+            {{-- CONFIRM PASSWORD --}}
+            <div class="auth-group">
+                <label>Confirmar contraseña</label>
+                <input type="password" name="password_confirmation" placeholder="Repite la contraseña" required>
+            </div>
+
+            <button type="submit" class="auth-btn">
+                Restablecer contraseña
+            </button>
+        </form>
+
+        <div class="auth-links">
+            <a href="{{ route('login') }}">Volver al inicio de sesión</a>
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+    </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                name="password_confirmation" required autocomplete="new-password" />
+</body>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
+use App\Mail\BienvenidaClienteMail;
 use App\Models\Cliente;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ClienteController extends Controller
@@ -20,23 +22,36 @@ class ClienteController extends Controller
     public function store(ClienteRequest $request)
     {
         $datosValidos = $request->validated();
+        // Guardar contraseña temporal antes de cifrarla
+        $passwordTemporal = Str::random(8);
 
-        // Crear usuario con contraseña temporal
+        // Crear usuario
         $user = User::create([
+            'nombre' => $datosValidos['nombre_cliente'],
             'documento' => $datosValidos['documento'],
-            'password' => bcrypt(Str::random(8)),
+            'correo_cliente' => $datosValidos['correo_cliente'],
+            'email' => $datosValidos['correo_cliente'],
+            'password' => bcrypt($passwordTemporal),
             'rol' => 'cliente',
             'estado' => 'activo',
         ]);
 
         $user->assignRole('cliente');
 
-        // Crear cliente — agregamos el user_id a los datos validados
         $datosValidos['user_id'] = $user->id;
         Cliente::create($datosValidos);
 
+        // Enviar correo con credenciales
+        Mail::to($datosValidos['correo_cliente'])->send(
+            new BienvenidaClienteMail(
+                $datosValidos['nombre_cliente'],
+                $datosValidos['documento'],
+                $passwordTemporal
+            )
+        );
+
         return redirect()->route('cliente.index')
-            ->with('success', 'Cliente registrado correctamente.');
+            ->with('success', 'Cliente registrado y credenciales enviadas por correo.');
     }
 
     public function update(ClienteRequest $request, Mecanico $mecanico)

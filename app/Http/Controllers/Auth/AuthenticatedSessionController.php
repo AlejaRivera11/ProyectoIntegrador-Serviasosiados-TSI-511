@@ -31,6 +31,22 @@ class AuthenticatedSessionController extends Controller
     //     return redirect()->intended(route('dashboard', absolute: false));
     // }
 
+    // public function store(LoginRequest $request): RedirectResponse
+    // {
+    //     $request->authenticate();
+
+    //     $request->session()->regenerate();
+
+    //     $rol = auth()->user()->rol;
+
+    //     return match ($rol) {
+    //         'administrador' => redirect()->route('inicio'),
+    //         'recepcionista' => redirect()->route('inicio'),
+    //         'cliente' => redirect()->route('inicio'),
+    //         default => redirect('/'),
+    //     };
+    // }
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -39,12 +55,21 @@ class AuthenticatedSessionController extends Controller
 
         $rol = auth()->user()->rol;
 
-        return match ($rol) {
-            'administrador' => redirect()->route('inicio'),
-            'recepcionista' => redirect()->route('inicio'),
-            'cliente' => redirect()->route('inicio'),
-            default => redirect('/'),
-        };
+        $user = auth()->user();
+
+        if ($user->hasRole('administrador')) {
+            return redirect()->route('inicio');
+        }
+
+        if ($user->hasRole('recepcionista')) {
+            return redirect()->route('inicio');
+        }
+
+        if ($user->hasRole('cliente')) {
+            return redirect()->route('inicio');
+        }
+
+        return redirect('/');
     }
 
     /**

@@ -26,15 +26,13 @@
                     <li><a href="#testimonios">Testimonios</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                     @auth
-                        <li> <a href="{{ url('/dashboard') }}">Dashboard </a></li>
+                        <li><a href="{{ route('inicio') }}">Inicio</a></li>
                     @else
-                        <li> <a href="{{ route('login') }}"> Iniciar Sesión </a></li>
-
-
-                        <li> <a href="{{ route('register') }}">Registrar </a></li>
-
+                        <li><a href="{{ route('login') }}"> Iniciar Sesión </a></li>
+                        <li><a href="{{ route('register') }}">Registrar </a></li>
                     @endauth
                 </ul>
+
             </nav>
         </div>
     </header>

@@ -5,16 +5,13 @@ use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PerfilClienteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\CitaController;
 
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +27,7 @@ Route::get('inicio', function () {
 Route::get('servicio', [ServicioController::class, 'index'])->name('servicio.index');
 Route::post('servicio', [ServicioController::class, 'store'])->name('servicio.store');
 Route::put('servicio/{servicio}', [ServicioController::class, 'update'])->name('servicio.update');
+})->name('welcome');
 
 Route::middleware('auth')->group(function () {
 
@@ -37,10 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/inicio', function () {
+        return view('inicio');
+    })->middleware('auth')->name('inicio');
+
     // Usuarios
     Route::get('usuario', [UsuarioController::class, 'index'])
         ->name('usuario.index')
         ->middleware('can:usuario.index');
+
     Route::post('usuario', [UsuarioController::class, 'store'])
         ->name('usuario.store')
         ->middleware('can:usuario.store');
@@ -101,6 +104,17 @@ Route::middleware('auth')->group(function () {
     Route::put('misVehiculos/{vehiculo}', [VehiculoController::class, 'updateVehiculo'])
         ->name('perfilCliente.misVehiculos.updateVehiculo')
         ->middleware('can:perfilCliente.misVehiculos.updateVehiculo');
+
+    // Serivicos
+    Route::get('servicio', [ServicioController::class, 'index'])
+        ->name('servicio.index')
+        ->middleware('can:servicio.index');
+    Route::post('servicio', [ServicioController::class, 'store'])
+        ->name('servicio.store')
+        ->middleware('can:servicio.store');
+    Route::put('servicio/{servicio}', [ServicioController::class, 'update'])
+        ->name('servicio.update')
+        ->middleware('can:servicio.update');
 
     // PDF
     Route::get('/pdf/clientes', [PdfController::class, 'pdfClientes'])->name('pdf.clientes');
