@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehiculo extends Model
 {
-    //
     use HasFactory;
+
+    protected $table = 'vehiculos'; // ajusta si es diferente
+    protected $primaryKey = 'placa';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'placa',
@@ -20,8 +25,17 @@ class Vehiculo extends Model
         'cliente_id',
     ];
 
+    /*
+    RELACIONES
+    */
+
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class); // es la relacion que indica que un vehiculo le pertece a un cliente
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class, 'placa', 'placa');
     }
 }

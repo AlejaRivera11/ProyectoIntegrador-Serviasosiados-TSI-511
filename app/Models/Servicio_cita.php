@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Servicio;
-use App\Models\Cita;
 
 class Servicio_cita extends Model
 {
-    //
     use HasFactory;
+
+    protected $table = 'servicio_citas'; // AJUSTA si es diferente
+    protected $primaryKey = 'servicio_cita_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'fecha_inicio',
@@ -19,14 +20,22 @@ class Servicio_cita extends Model
         'cita_id'
     ];
 
+    /*
+    RELACIONES
+    */
+
     public function servicio()
     {
-        return $this->belongsTo(Servicio::class, 'servicio_id');
-    } // Relación con el servicio asociado a la cita
+        return $this->belongsTo(servicio::class, 'servicio_id');
+    }
 
     public function cita()
     {
         return $this->belongsTo(Cita::class, 'cita_id');
-    } // Relación con la cita asociada al servicio
+    }
 
+    public function citaMecanicos()
+    {
+        return $this->hasMany(Cita_mecanico::class, 'servicio_cita_id');
+    }
 }

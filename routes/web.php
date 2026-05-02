@@ -8,10 +8,25 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\CitaController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+Route::get('cita', [CitaController::class, 'index'])->name('cita.index');
+Route::get('inicio', function () {
+    return view('inicio');
+})->name('inicio');
+Route::get('servicio', [ServicioController::class, 'index'])->name('servicio.index');
+Route::post('servicio', [ServicioController::class, 'store'])->name('servicio.store');
+Route::put('servicio/{servicio}', [ServicioController::class, 'update'])->name('servicio.update');
 })->name('welcome');
 
 Route::middleware('auth')->group(function () {
