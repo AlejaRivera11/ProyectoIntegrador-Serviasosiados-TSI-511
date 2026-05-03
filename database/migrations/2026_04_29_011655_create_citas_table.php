@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('fecha_cita');
             $table->time('hora_cita');
             $table->foreignId('estado_id')->constrained('estados');
-            $table->foreignId('placa')->constrained('vehiculos');
+            $table->foreignId('vehiculo_id')->constrained('vehiculos');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
 

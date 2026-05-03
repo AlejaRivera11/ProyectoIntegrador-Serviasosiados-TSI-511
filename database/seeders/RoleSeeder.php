@@ -47,5 +47,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'servicio.index'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'servicio.store'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'servicio.update'])->syncRoles([$roleAdmin]);
+
+       //citas
+        Permission::create(['name' => 'cita.index'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
+        Permission::create(['name' => 'cita.create'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
+        Permission::create(['name' => 'cita.store'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
+        Permission::create(['name' => 'cita.destroy'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
     }
 }

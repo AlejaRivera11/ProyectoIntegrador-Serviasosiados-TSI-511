@@ -10,7 +10,7 @@ class Servicio_cita extends Model
     use HasFactory;
 
     protected $table = 'servicio_citas'; // AJUSTA si es diferente
-    protected $primaryKey = 'servicio_cita_id';
+    protected $primaryKey = 'id'; // AJUSTA si es diferente
     public $timestamps = false;
 
     protected $fillable = [

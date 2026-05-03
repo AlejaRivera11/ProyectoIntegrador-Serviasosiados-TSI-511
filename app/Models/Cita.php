@@ -2,25 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Cita extends Model
 {
     use HasFactory;
 
     protected $table = 'citas';
-    protected $primaryKey = 'cita_id';
+
+    protected $primaryKey = 'id';
+
     public $timestamps = false;
 
     protected $fillable = [
-        'fecha_registro_cita',
-        'hora_registro_cita',
         'fecha_cita',
         'hora_cita',
         'estado_id',
-        'placa',
-        'usuario_id'
+        'vehiculo_id',
+        'user_id',
     ];
 
     /*
@@ -34,12 +34,12 @@ class Cita extends Model
 
     public function vehiculo()
     {
-        return $this->belongsTo(Vehiculo::class, 'placa', 'placa');
+        return $this->belongsTo(Vehiculo::class, 'vehiculo_id', 'vehiculo_id');
     }
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'usuario_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function servicioCita()

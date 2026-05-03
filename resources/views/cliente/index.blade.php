@@ -17,7 +17,7 @@
         </div>
 
         {{-- Formulario --}}
-        <form id="form-cliente" method="POST" action="{{ route('cliente.store') }}"> //
+        <form id="form-cliente" method="POST" action="{{ route('cliente.store') }}">
             @csrf
             <input type="hidden" name="_method" id="form-method" value="POST">
             <input type="hidden" name="cliente_id" id="cliente_id">
