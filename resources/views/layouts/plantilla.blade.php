@@ -56,7 +56,8 @@
                         class="nav-item {{ request()->routeIs('perfilCliente.misVehiculos') ? 'active' : '' }}">
                         <i class="fas fa-car"></i> Mis Vehiculos
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('cita.index') }}"
+                        class="nav-item {{ request()->routeIs('cita') ? 'active' : '' }}">
                         <i class="fas fa-calendar-plus"></i> Agendar Cita
                     </a>
                     <a href="" class="nav-item">
@@ -96,7 +97,8 @@
                         class="nav-item {{ request()->routeIs('vehiculo.*') ? 'active' : '' }}">
                         <i class="fas fa-car"></i> Vehículos
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('cita.index') }}"
+                        class="nav-item {{ request()->routeIs('cita') ? 'active' : '' }}">
                         <i class="fas fa-calendar-plus"></i> Agendar Cita
                     </a>
                     <a href="" class="nav-item">

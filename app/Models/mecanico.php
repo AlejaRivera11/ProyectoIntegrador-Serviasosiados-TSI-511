@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Mecanico extends Model
 {
     use HasFactory;
 
     protected $table = 'mecanicos'; // ajusta si es diferente
-    protected $primaryKey = 'mecanico_id';
+
+    protected $primaryKey = 'id'; // ajusta si es diferente
+
     public $timestamps = false;
 
     protected $fillable = [

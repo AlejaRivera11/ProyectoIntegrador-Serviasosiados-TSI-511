@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
-
 use App\Models\Cita;
-use App\Models\Vehiculo;
-use App\Models\servicio;
-use App\Models\mecanico;
-use App\Models\Servicio_cita;
 use App\Models\Cita_mecanico;
 use App\Models\Estado;
+use App\Models\mecanico;
+use App\Models\servicio;
+use App\Models\Servicio_cita;
+use App\Models\Vehiculo;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
 {
@@ -23,13 +22,8 @@ class CitaController extends Controller
     {
         $user = Auth::user();
 
-        $vehiculos = [];
-        $servicios = [];
-
-        /*if ($user->cliente) {
-            $vehiculos = Vehiculo::where('cliente_id', $user->cliente->id)->get();
-            $servicios = servicio::all();
-        }*/
+        $vehiculos = Vehiculo::where('cliente_id', optional($user->cliente)->id)->get();
+        $servicios = servicio::all();
 
         $citas = Cita::all();
 
@@ -43,18 +37,16 @@ class CitaController extends Controller
     {
         $user = Auth::user();
 
-        // ⚠️ Validación importante
-        if (!$user->cliente) {
-            return redirect()->route('cita.index')
-                ->with('error', 'Este usuario no tiene perfil de cliente.');
+        // 🔥 AQUÍ ES DONDE VA TU LÓGICA
+        if ($user->hasAnyRole(['administrador', 'recepcion'])) {
+            $vehiculos = Vehiculo::all();
+        } else {
+            $vehiculos = $user->cliente->vehiculos ?? [];
         }
 
-        $cliente = $user->cliente;
-
-        $vehiculos = Vehiculo::where('cliente_id', $cliente->id)->get();
         $servicios = servicio::all();
 
-        return view('cita.create', compact('vehiculos', 'servicios'));
+        return view('cita.index', compact('vehiculos', 'servicios'));
     }
 
     /*
@@ -63,15 +55,15 @@ class CitaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'placa' => 'required|exists:vehiculos,placa',
+            'vehiculo_id' => 'required|exists:vehiculos,id',
             'servicio_id' => 'required|exists:servicios,id',
             'fecha_cita' => 'required|date|after_or_equal:today',
-            'hora_cita' => 'required'
+            'hora_cita' => 'required',
         ]);
 
         $user = Auth::user();
 
-        if (!$user->cliente) {
+        if (! $user->cliente) {
             return back()->with('error', 'El usuario no tiene perfil de cliente.');
         }
 
@@ -80,11 +72,11 @@ class CitaController extends Controller
         /*
         VALIDAR VEHÍCULO DEL CLIENTE
         */
-        $vehiculo = Vehiculo::where('placa', $request->placa)
+        $vehiculo = Vehiculo::where('id', $request->vehiculo_id)
             ->where('cliente_id', $cliente->id)
             ->first();
 
-        if (!$vehiculo) {
+        if (! $vehiculo) {
             return back()->with('error', 'El vehículo no pertenece al cliente.');
         }
 
@@ -94,7 +86,7 @@ class CitaController extends Controller
         $servicio = servicio::findOrFail($request->servicio_id);
         $duracion = (int) $servicio->tiempo;
 
-        $inicio = Carbon::parse($request->fecha_cita . ' ' . $request->hora_cita);
+        $inicio = Carbon::parse($request->fecha_cita.' '.$request->hora_cita);
         $fin = $inicio->copy()->addMinutes($duracion);
 
         /*
@@ -102,7 +94,7 @@ class CitaController extends Controller
         */
         $mecanicosDisponibles = mecanico::whereDoesntHave('citasMecanico.servicioCita', function ($query) use ($inicio, $fin) {
             $query->where('fecha_inicio', '<', $fin)
-                  ->where('fecha_final', '>', $inicio);
+                ->where('fecha_final', '>', $inicio);
         })->get();
 
         if ($mecanicosDisponibles->isEmpty()) {
@@ -119,14 +111,13 @@ class CitaController extends Controller
         /*
         CREAR CITA
         */
+
         $cita = Cita::create([
-            'fecha_registro_cita' => now()->toDateString(),
-            'hora_registro_cita' => now()->toTimeString(),
             'fecha_cita' => $request->fecha_cita,
             'hora_cita' => $request->hora_cita,
             'estado_id' => $estado->id,
-            'placa' => $vehiculo->placa,
-            'usuario_id' => $user->id
+            'vehiculo_id' => $vehiculo->id,
+            'user_id' => $user->id,
         ]);
 
         /*
@@ -136,15 +127,15 @@ class CitaController extends Controller
             'fecha_inicio' => $inicio,
             'fecha_final' => $fin,
             'servicio_id' => $servicio->id,
-            'cita_id' => $cita->cita_id
+            'cita_id' => $cita->id,
         ]);
 
         /*
         ASIGNAR MECÁNICO
         */
         Cita_mecanico::create([
-            'mecanico_id' => $mecanico->mecanico_id,
-            'servicio_cita_id' => $servicioCita->servicio_cita_id
+            'mecanico_id' => $mecanico->id,
+            'servicio_cita_id' => $servicioCita->id,
         ]);
 
         return redirect()->route('cita.index')
@@ -208,12 +199,12 @@ class CitaController extends Controller
 
         for ($h = 8; $h <= 17; $h++) {
 
-            $inicio = Carbon::parse($fecha . ' ' . str_pad($h, 2, '0', STR_PAD_LEFT) . ':00');
+            $inicio = Carbon::parse($fecha.' '.str_pad($h, 2, '0', STR_PAD_LEFT).':00');
             $fin = $inicio->copy()->addMinutes($duracion);
 
             $hayDisponibles = mecanico::whereDoesntHave('citasMecanico.servicioCita', function ($q) use ($inicio, $fin) {
                 $q->where('fecha_inicio', '<', $fin)
-                  ->where('fecha_final', '>', $inicio);
+                    ->where('fecha_final', '>', $inicio);
             })->exists();
 
             if ($hayDisponibles) {
