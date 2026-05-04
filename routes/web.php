@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('cita', [CitaController::class, 'index'])->name('cita.index');
 
 Route::middleware('auth')->group(function () {
 
@@ -121,6 +120,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('cita/{cita}', [CitaController::class, 'destroy'])
         ->name('cita.destroy')
         ->middleware('can:cita.destroy');
+
+    // para citas programadas
+    Route::get('citasProgramadas', [CitaController::class, 'citasProgramadas'])
+        ->name('cita.citasProgramadas')
+        ->middleware('can:cita.citasProgramadas');
+    Route::patch('cita/{cita}/estado', [CitaController::class, 'actualizarEstado'])
+        ->name('cita.actualizarEstado')
+        ->middleware('can:cita.actualizarEstado');
+
+    // para mis citas
+    Route::get('perfilCliente/miscitas', [CitaController::class, 'misCitas'])
+        ->name('perfilCliente.misCitas')
+        ->middleware('can:perfilCliente.misCitas');
+
+    Route::patch('perfilCliente/miscitas/{cita}', [CitaController::class, 'cancelarCliente'])
+        ->name('perfilCliente.misCitas.cancelar');
 
 });
 

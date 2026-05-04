@@ -98,7 +98,6 @@
                             <td>{{ $usuario->correo_cliente }}</td>
                             <td>{{ $usuario->password }}</td>
                             <td>{{ $usuario->rol }}</td>
-                            <td>{{ $usuario->estado }}</td>
                             <td>
                                 <span
                                     class="badge {{ $usuario->estado === 'activo' ? 'badge-active' : 'badge-inactive' }}">
