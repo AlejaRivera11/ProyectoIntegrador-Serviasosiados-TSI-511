@@ -13,7 +13,7 @@ class Mecanico extends Model
 
     protected $primaryKey = 'id'; // ajusta si es diferente
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'tipo_documento',

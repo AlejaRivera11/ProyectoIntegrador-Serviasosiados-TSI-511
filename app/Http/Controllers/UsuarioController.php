@@ -19,6 +19,7 @@ class UsuarioController extends Controller
     {
         $datosValidos = $request->validated();
         $datosValidos['password'] = Hash::make($datosValidos['password']);
+        $datosValidos['email'] = $datosValidos['correo_cliente'];
         $user = User::create($datosValidos);
 
         $user->assignRole($request->rol);

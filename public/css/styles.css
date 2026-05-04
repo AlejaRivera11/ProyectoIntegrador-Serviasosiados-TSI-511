@@ -1,4 +1,3 @@
-/* ───────── RESET GENERAL (Configuración base de toda la página) ───────── */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +11,7 @@
     min-height: 100vh;
 }
 
-/* ───────── SIDEBAR (MENÚ LATERAL) ───────── */
+/* ───────── MENÚ LATERAL ───────── */
 .sidebar {
     width: 250px;
     background: #1F4E79;
@@ -22,7 +21,7 @@
     min-height: 100vh;
 }
 
-/* Header del sidebar (logo y nombre) */
+/* logo y nombre de MENÚ LATERAL */
 .sidebar-header {
     padding: 16px 14px;
     display: flex;
@@ -31,21 +30,21 @@
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Logo del sidebar */
+/* Logo del MENÚ LATERAL */
 .sidebar-logo {
     width: 36px;
     height: 36px;
     object-fit: contain;
 }
 
-/* Texto del título en sidebar */
+/* Texto del título del MENÚ LATERAL */
 .sidebar-title {
     color: #fff;
     font-size: 16px;
     font-weight: 500;
 }
 
-/* ───────── SECCIÓN USUARIO EN SIDEBAR ───────── */
+/* ───────── SECCIÓN USUARIO EN MENÚ LATERAL ───────── */
 .sidebar-user {
     padding: 14px;
     display: flex;
@@ -54,7 +53,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* usuario */
+/* logo de usuario */
 .sidebar-avatar img {
     width: 34px;
     height: 34px;
@@ -70,7 +69,7 @@
     text-transform: capitalize;
 }
 
-/* ───────── NAVEGACIÓN DEL SIDEBAR ───────── */
+/* ───────── NAVEGACIÓN DEL MENÚ LATERAL ───────── */
 .sidebar-nav {
     flex: 1;
     padding: 10px 0;
@@ -90,7 +89,7 @@
 }
 
 
-/* ───────── FOOTER DEL SIDEBAR (BOTÓN CERRAR SESIÓN) ───────── */
+/* ───────── FOOTER DEL MENÚ LATERAL (BOTÓN CERRAR SESIÓN) ───────── */
 .sidebar-footer {
     padding: 14px;
     border-top: 1px solid rgba(255,255,255,0.1);
@@ -166,6 +165,7 @@
     border: 0.5px solid #ddd;
     padding: 18px;
     margin-bottom: 18px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.301);
 }
 
 /* ───────── BOTONES GENERALES ───────── */
@@ -309,7 +309,8 @@ tbody td {
 .badge-active   { background: #EAF3DE; color: #3B6D11; }
 .badge-inactive { background: #FAECE7; color: #993C1D; }
 
-/* ───────── ICONOS DEL MENÚ ───────── */
+
+/* ───────── ICONOS DEL MENÚ LATERAL───────── */
 .nav-item i {
     width: 25px;
     text-align: center;
@@ -367,6 +368,22 @@ tbody td {
     background-color: #1F4E79;
     color: #fff;
     border-color: #1F4E79;
+}
+
+.buscador{
+    margin-top:16px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.input-buscador{
+    height:30px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    padding:0 10px;
+    font-size:12px;
+    width:280px;
 }
 
 /* ───────── RESPONSIVE (MEDIA QUERIES) ───────── */
@@ -509,21 +526,6 @@ tbody td {
     }
 }
 
-.buscador{
-    margin-top:16px;
-    display:flex;
-    gap:8px;
-    align-items:center;
-}
-
-.input-buscador{
-    height:30px;
-    border:1px solid #ccc;
-    border-radius:4px;
-    padding:0 10px;
-    font-size:12px;
-    width:280px;
-}
 
 Botón hamburguesa
 .menu-toggle {

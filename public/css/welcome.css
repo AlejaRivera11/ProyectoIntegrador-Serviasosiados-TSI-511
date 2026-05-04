@@ -1,8 +1,4 @@
-/* =============================================
-   styles.css – Landing Page Serviasociados
-   ============================================= */
 
-/* ── Reset básico ── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -59,9 +55,7 @@ h2 {
   line-height: 1.6;
 }
 
-/* =============================================
-   HEADER
-   ============================================= */
+/* HEADER */
 header {
   background-color: #1F4E79;
   position: sticky;
@@ -115,9 +109,7 @@ header {
   color:   #32699c;
 }
 
-/* =============================================
-   SECCIÓN INICIO (HERO)
-   ============================================= */
+/*SECCIÓN INICIO (HERO) */
 .seccion-inicio {
   background-image: linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.800)),
                     url("../img/Fondo.png");

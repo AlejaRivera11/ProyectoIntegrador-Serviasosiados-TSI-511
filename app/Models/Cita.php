@@ -13,7 +13,7 @@ class Cita extends Model
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'fecha_cita',
@@ -34,10 +34,10 @@ class Cita extends Model
 
     public function vehiculo()
     {
-        return $this->belongsTo(Vehiculo::class, 'vehiculo_id', 'vehiculo_id');
+        return $this->belongsTo(Vehiculo::class, 'vehiculo_id', 'id');
     }
 
-    public function usuario()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -45,5 +45,10 @@ class Cita extends Model
     public function servicioCita()
     {
         return $this->hasOne(Servicio_cita::class, 'cita_id');
+    }
+
+    public function citaMecanico()
+    {
+        return $this->hasOne(Cita_mecanico::class, 'servicio_cita_id', 'id');
     }
 }

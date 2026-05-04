@@ -1,0 +1,194 @@
+
+.main-content {
+    width: 600px;
+    margin: 40px auto;
+}
+
+.cita-card {
+    width: 500px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #c5c5c5;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.267);
+
+    transition: all 0.2s ease-in-out;
+}
+
+.cita-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* ───────── FORMULARIO ───────── */
+.cita-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* GRUPO DE CAMPOS */
+.cita-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* LABELS */
+.cita-group label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    min-width: 80px;
+    font-style: italic;
+}
+
+/* INPUTS Y SELECTS */
+.cita-group input,
+.cita-group select {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #1F4E79;
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 14px;
+    background: #fff;
+    color: #333;
+}
+
+/* FOCUS */
+.cita-group input:focus,
+.cita-group select:focus {
+    outline: none;
+    border-color: #378ADD;
+    box-shadow: 0 0 0 2px rgba(55,138,221,0.15);
+}
+
+/* ───────── BOTONES ───────── */
+
+.cita-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.cita-btn {
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.cita-btn-primary {
+    background-color: #1F4E79;
+    color: #fff;
+}
+
+.cita-btn-refresh {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* ───────── ALERTA ───────── */
+
+.cita-alert {
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #842029;
+}
+
+.selected {
+    background: #e3f2fd;
+}
+
+/* ───────── CAJA DE INFORMACIÓN PARA LA VISTA CLIENTES ───────── */
+
+.info-box {
+    background: #eaf4ff;
+    border-left: 5px solid #1F4E79;
+    padding: 15px 18px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #1f2937;
+    line-height: 1.5;
+    box-shadow: 0 2px 6px rgba(5, 0, 0, 0.233);
+}
+
+.info-box strong {
+    color: #1F4E79;
+}
+
+
+.btn-guardar {
+    background: #1F4E79;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 6px;
+}
+
+.btn-guardar:hover {
+    background: #378ADD;
+    transform: translateY(-1px);
+}
+
+.btn-guardar:active {
+    transform: scale(0.98);
+}
+
+
+
+/* ───────── Estilos para la lista estados ───────── */
+.estado-select {
+    width: 130px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111827;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.estado-select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+    background: #fff;
+}
+
+.estado-select:hover {
+    border-color: #9ca3af;
+}
+
+.estado-agendada {
+    background: #70a6ec;
+    border: 1px solid #7fadf7;
+    
+}
+
+.estado-completada {
+    background: #3fc587;
+    border: 1px solid #10b981;
+}
+
+.estado-cancelada {
+    background: #d66262;
+    border: 1px solid #ef4444;
+}
+
+.estado-en-curso {
+    background: #cfb961;
+    border: 1px solid #f59e0b;
+}

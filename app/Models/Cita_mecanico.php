@@ -13,7 +13,7 @@ class Cita_mecanico extends Model
 
     protected $primaryKey = 'id'; // AJUSTA si tu PK es diferente
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'mecanico_id',

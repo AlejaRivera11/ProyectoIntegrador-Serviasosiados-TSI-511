@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/inicio.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cita.css') }}">
     <link rel="stylesheet" href="{{ asset('css/perfilCliente.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -60,7 +62,8 @@
                         class="nav-item {{ request()->routeIs('cita') ? 'active' : '' }}">
                         <i class="fas fa-calendar-plus"></i> Agendar Cita
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('perfilCliente.misCitas') }}"
+                        class="nav-item {{ request()->routeIs('perfilCliente.misCitas') ? 'active' : '' }} ">
                         <i class="fas fa-calendar-check"></i> Mis Citas
                     </a>
                 @elseif(auth()->user()?->hasRole('recepcionista'))
@@ -77,10 +80,12 @@
                         class="nav-item {{ request()->routeIs('vehiculo.*') ? 'active' : '' }}">
                         <i class="fas fa-car"></i> Vehículos
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('cita.index') }}"
+                        class="nav-item {{ request()->routeIs('cita') ? 'active' : '' }}">
                         <i class="fas fa-calendar-plus"></i> Agendar Cita
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('cita.citasProgramadas') }}"
+                        class="nav-item {{ request()->routeIs('cita.citasProgramadas') ? 'active' : '' }}">
                         <i class="fas fa-calendar-check"></i> Citas Programadas
                     </a>
                 @elseif(auth()->user()?->hasRole('administrador'))
@@ -101,7 +106,8 @@
                         class="nav-item {{ request()->routeIs('cita') ? 'active' : '' }}">
                         <i class="fas fa-calendar-plus"></i> Agendar Cita
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('cita.citasProgramadas') }}"
+                        class="nav-item {{ request()->routeIs('cita.citasProgramadas') ? 'active' : '' }}">
                         <i class="fas fa-calendar-check"></i> Citas Programadas
                     </a>
                     <a href="" class="nav-item">
