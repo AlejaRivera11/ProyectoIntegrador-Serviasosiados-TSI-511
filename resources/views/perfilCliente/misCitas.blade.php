@@ -12,7 +12,7 @@
         </p>
         <p>
             Para casos urgentes, comunícate con nuestro soporte:
-            <b>+57 XXX XXX XXXX</b>
+            <b>+57 310 555 0101</b>
         </p>
     </div>
 

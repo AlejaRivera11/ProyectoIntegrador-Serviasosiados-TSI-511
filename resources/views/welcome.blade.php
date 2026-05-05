@@ -56,6 +56,7 @@
     <section id="servicios" class="seccion-gris">
         <div class="contenedor">
             <h2>Nuestros Servicios</h2>
+
             <p class="subtitulo-sesion">Contamos con técnicos certificados para atender cualquier necesidad de tu
                 vehículo.</p>
 
@@ -98,13 +99,17 @@
                 </div>
 
             </div>
+
+
+            <p class="subtitulo-sesion">Y muchos servicios más.</p>
+
         </div>
     </section>
 
     <!-- ============ SECCIÓN PARALLAX ============ -->
     <section class="seccion-parallax">
         <div class="parallax-contenido">
-            <h2>Más de 10 años cuidando tu vehículo</h2>
+            <h2>Más de 35 años cuidando tu vehículo</h2>
             <p>Técnicos certificados, repuestos originales y atención personalizada en Cali.</p>
             <a href="#contacto" class="btn-principal">Agendar cita ahora</a>
         </div>
@@ -114,7 +119,7 @@
     <section id="nosotros" class="seccion-blanca">
         <div class="contenedor">
             <h2>¿Por qué elegirnos?</h2>
-            <p class="subtitulo-sesion">Llevamos más de 10 años cuidando los vehículos de nuestros clientes en Cali.</p>
+            <p class="subtitulo-sesion">Llevamos más de 35 años cuidando los vehículos de nuestros clientes en Cali.</p>
 
             <div class="nosotros-grid">
 
@@ -127,7 +132,7 @@
                     </p>
 
                     <ul class="lista-beneficios">
-                        <li>✔ Técnicos certificados con más de 10 años de experiencia</li>
+                        <li>✔ Técnicos certificados con más de 35 años de experiencia</li>
                         <li>✔ Repuestos originales de proveedores autorizados</li>
                         <li>✔ Presupuesto sin compromiso antes de iniciar cualquier trabajo</li>
                         <li>✔ Garantía de 30 días en mano de obra</li>
@@ -136,15 +141,15 @@
 
                 <div class="nosotros-stats">
                     <div class="stat">
-                        <span class="stat-numero">+500</span>
+                        <span class="stat-numero">+5000</span>
                         <span class="stat-texto">Clientes atendidos</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-numero">10+</span>
+                        <span class="stat-numero">35+</span>
                         <span class="stat-texto">Años de experiencia</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-numero">6</span>
+                        <span class="stat-numero">+10</span>
                         <span class="stat-texto">Especialidades</span>
                     </div>
                     <div class="stat">
@@ -161,7 +166,7 @@
     <section id="testimonios" class="seccion-gris">
         <div class="contenedor">
             <h2>Lo que dicen nuestros clientes</h2>
-            <p class="subtitulo-sesion">Más de 500 clientes confían en nosotros para el cuidado de sus vehículos.</p>
+            <p class="subtitulo-sesion">Más de 5000 clientes confían en nosotros para el cuidado de sus vehículos.</p>
 
             <div class="tarjetas">
 
@@ -302,7 +307,8 @@
 
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Serviasociados · Todos los derechos reservados · Programación III – UNIAJC</p>
+            <p>© 2025 Serviasociados · Todos los derechos reservados · Programación III – Ingeniería de Software II -
+                UNIAJC</p>
         </div>
     </footer>
 

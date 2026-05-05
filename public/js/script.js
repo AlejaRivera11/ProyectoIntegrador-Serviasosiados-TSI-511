@@ -16,3 +16,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// ------------------- Para los reportes --------------------//
+
+function switchTab(tab, el) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('panel-' + tab).classList.add('active');
+        }
+
+        ['citas', 'servicios', 'mecanicos'].forEach(panel => {
+            const input = document.getElementById('busqueda-' + panel);
+            if (input) {
+                input.addEventListener('keyup', function() {
+                    const busqueda = input.value.toLowerCase();
+                    document.querySelectorAll('#tabla-reporte-' + panel + ' tr').forEach(fila => {
+                        fila.style.display = fila.textContent.toLowerCase().includes(busqueda) ?
+                            '' : 'none';
+                    });
+                });
+            }
+        });
