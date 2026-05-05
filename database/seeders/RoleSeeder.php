@@ -48,16 +48,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'servicio.store'])->syncRoles([$roleAdmin]);
         Permission::create(['name' => 'servicio.update'])->syncRoles([$roleAdmin]);
 
-        // // citas
-        // Permission::create(['name' => 'cita.index'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
-        // Permission::create(['name' => 'cita.create'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
-        // Permission::create(['name' => 'cita.store'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
-        // Permission::create(['name' => 'cita.destroy'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
-
-        // // Permisos para citas programadas
-        // Permission::create(['name' => 'cita.citasProgramadas'])->syncRoles([$roleAdmin, $roleRecepcion]);
-        // Permission::create(['name' => 'cita.actualizarEstado'])->syncRoles([$roleAdmin, $roleRecepcion]);
-
+        // Permisos para citas
         Permission::create(['name' => 'cita.index'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
         Permission::create(['name' => 'cita.store'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
         Permission::create(['name' => 'cita.destroy'])->syncRoles([$roleCliente, $roleAdmin, $roleRecepcion]);
@@ -67,5 +58,8 @@ class RoleSeeder extends Seeder
         // Mis citas
         Permission::create(['name' => 'perfilCliente.misCitas'])->syncRoles([$roleCliente]);
         Permission::create(['name' => 'perfilCliente.misCitas.cancelar'])->syncRoles([$roleCliente]);
+
+        // Permisos para reportes
+        Permission::create(['name' => 'reportes.index'])->syncRoles([$roleAdmin]);
     }
 }

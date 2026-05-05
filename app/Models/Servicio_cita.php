@@ -9,9 +9,9 @@ class Servicio_cita extends Model
 {
     use HasFactory;
 
-    protected $table = 'servicio_citas'; // AJUSTA si es diferente
+    protected $table = 'servicio_citas';
 
-    protected $primaryKey = 'id'; // AJUSTA si es diferente
+    protected $primaryKey = 'id';
 
     public $timestamps = true;
 
@@ -22,10 +22,6 @@ class Servicio_cita extends Model
         'cita_id',
     ];
 
-    /*
-    RELACIONES
-    */
-
     public function servicio()
     {
         return $this->belongsTo(servicio::class, 'servicio_id');
@@ -35,7 +31,6 @@ class Servicio_cita extends Model
     {
         return $this->belongsTo(Cita::class, 'cita_id');
     }
-
 
     public function citaMecanicos()
     {

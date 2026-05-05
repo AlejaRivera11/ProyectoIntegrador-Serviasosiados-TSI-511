@@ -6,6 +6,7 @@ use App\Http\Controllers\MecanicoController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PerfilClienteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VehiculoController;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
 
 Route::middleware('auth')->group(function () {
 
@@ -106,6 +106,9 @@ Route::middleware('auth')->group(function () {
     // PDF
     Route::get('/pdf/clientes', [PdfController::class, 'pdfClientes'])->name('pdf.clientes');
     Route::get('/pdf/vehiculos', [PdfController::class, 'pdfVehiculo'])->name('pdf.vehiculos');
+    Route::get('/pdf/citas', [PdfController::class, 'pdfCitas'])->name('pdf.citas');
+    Route::get('/pdf/mecanicos', [PdfController::class, 'pdfMecanicos'])->name('pdf.mecanicos');
+    Route::get('/pdf/servicios', [PdfController::class, 'pdfServicios'])->name('pdf.servicios');
 
     // citas
     Route::get('cita', [CitaController::class, 'index'])
@@ -136,6 +139,10 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('perfilCliente/miscitas/{cita}', [CitaController::class, 'cancelarCliente'])
         ->name('perfilCliente.misCitas.cancelar');
+
+    Route::get('reportes', [ReportesController::class, 'index'])
+        ->name('reportes.index')
+        ->middleware('can:reportes.index');
 
 });
 

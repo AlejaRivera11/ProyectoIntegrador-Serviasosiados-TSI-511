@@ -22,16 +22,13 @@
 
     <div class="layout">
 
-        {{-- SIDEBAR --}}
         <aside class="sidebar" id="sidebar">
 
-            {{-- Logo --}}
             <div class="sidebar-header">
                 <img src="{{ asset('img/Logo.png') }}" alt="Logo" class="sidebar-logo">
                 <span class="sidebar-title">Serviasociados</span>
             </div>
 
-            {{-- Usuario --}}
             <div class="sidebar-user">
                 <div class="sidebar-avatar">
                     <img src="{{ asset('img/usuario3.png') }}" alt="avatar">
@@ -110,7 +107,8 @@
                         class="nav-item {{ request()->routeIs('cita.citasProgramadas') ? 'active' : '' }}">
                         <i class="fas fa-calendar-check"></i> Citas Programadas
                     </a>
-                    <a href="" class="nav-item">
+                    <a href="{{ route('reportes.index') }}"
+                        class="nav-item {{ request()->routeIs('reportes.index') ? 'active' : '' }}">
                         <i class="fas fa-chart-line"></i> Reportes
                     </a>
                     <a href="{{ route('servicio.index') }}"
@@ -129,7 +127,6 @@
 
             </nav>
 
-            {{-- Cerrar sesión --}}
             <div class="sidebar-footer">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -141,20 +138,17 @@
 
         </aside>
 
-        {{-- CONTENIDO PRINCIPAL --}}
         <main class="main">
             <header class="main-header">
                 <h1 class="page-title">@yield('titulomain')</h1>
             </header>
 
-            {{-- Mensajes de éxito --}}
             @if (session('success'))
                 <div class="alert-success">
                     {{ session('success') }}
                 </div>
             @endif
 
-            {{-- Mensajes de error --}}
             @if ($errors->any())
                 <div class="alert-error">
                     <ul>

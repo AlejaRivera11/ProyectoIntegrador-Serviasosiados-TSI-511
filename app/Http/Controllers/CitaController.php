@@ -75,14 +75,32 @@ class CitaController extends Controller
         $inicio = Carbon::parse($request->fecha_cita.' '.$request->hora_cita);
         $fin = $inicio->copy()->addMinutes($duracion);
 
-        /* MECÁNICOS DISPONIBLES */
-        $mecanico = mecanico::whereDoesntHave('citasMecanico.servicioCita', function ($q) use ($inicio, $fin) {
-            $q->where('fecha_inicio', '<', $fin)
-                ->where('fecha_final', '>', $inicio);
+        /* VALIDAR SI EL VEHÍCULO YA TIENE CITA EN ESE HORARIO */
+        $existeVehiculo = Cita::where('vehiculo_id', $vehiculo->id)
+            ->whereDate('fecha_cita', $request->fecha_cita)
+            ->whereTime('hora_cita', $request->hora_cita)
+            ->whereHas('estado', function ($q) {
+                $q->whereNotIn('nombre_estado', ['Cancelada']);
+            })
+            ->exists();
+
+        if ($existeVehiculo) {
+            return back()->with('error', 'Este vehículo ya tiene una cita en ese horario.');
+        }
+
+        /* BUSCAR MECÁNICO DISPONIBLE */
+        $mecanico = mecanico::whereDoesntHave('citasMecanico', function ($q) use ($request) {
+            $q->whereHas('servicioCita.cita', function ($q2) use ($request) {
+                $q2->where('fecha_cita', $request->fecha_cita)
+                    ->where('hora_cita', $request->hora_cita)
+                    ->whereHas('estado', function ($q3) {
+                        $q3->whereNotIn('nombre_estado', ['Cancelada']);
+                    });
+            });
         })->first();
 
         if (! $mecanico) {
-            return back()->with('error', 'No hay mecánicos disponibles.');
+            return back()->with('error', 'No hay mecánicos disponibles en ese horario.');
         }
 
         /* ESTADO INICIAL */

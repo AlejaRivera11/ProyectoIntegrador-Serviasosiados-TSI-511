@@ -216,10 +216,12 @@ header {
 /* =============================================
    TARJETAS (Servicios y Testimonios)
    ============================================= */
+   
 .tarjetas {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 30px;  
   justify-content: center;
 }
 

@@ -526,6 +526,32 @@ tbody td {
     }
 }
 
+/* ── Pestañas ── */
+.tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 0;
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.tab.active {
+    color: #1F4E79;
+    border-bottom: 2px solid #1F4E79;
+    font-weight: 500;
+}
+
+.panel { display: none; }
+.panel.active { display: block; }
+
 
 Botón hamburguesa
 .menu-toggle {

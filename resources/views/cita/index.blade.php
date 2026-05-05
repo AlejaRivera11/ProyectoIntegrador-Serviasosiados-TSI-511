@@ -8,14 +8,16 @@
 
 @section('contenido')
 
+    @if (session('error'))
+        <div class="cita-alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <main class="main-content">
+
         <div class="cita-card">
 
-            @if (session('error'))
-                <div class="cita-alert">
-                    {{ session('error') }}
-                </div>
-            @endif
 
             <div class="cita-actions">
                 <button class="cita-btn cita-btn-refresh" onclick="limpiarFormulario()" title="Limpiar">↺</button>
