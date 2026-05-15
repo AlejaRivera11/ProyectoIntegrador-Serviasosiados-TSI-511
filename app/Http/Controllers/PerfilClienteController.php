@@ -14,13 +14,7 @@ class PerfilClienteController extends Controller
         return view('perfilCliente.datosPersonales', compact('cliente'));
     }
 
-    // public function update(PerfilClienteRequest $request)
-    // {
-    //     $cliente = auth()->user()->cliente;
-    //     $cliente->update($request->validated());
 
-    //     return redirect()->route('perfilCliente.datosPersonales')->with('success', 'Datos actualizados correctamente.');
-    // }
     public function update(PerfilClienteRequest $request)
     {
         $cliente = auth()->user()->cliente;

@@ -10,6 +10,8 @@ class Estado extends Model
     //
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'nombre_estado',
     ];

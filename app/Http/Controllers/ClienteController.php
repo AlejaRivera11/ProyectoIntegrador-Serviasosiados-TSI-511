@@ -22,10 +22,9 @@ class ClienteController extends Controller
     public function store(ClienteRequest $request)
     {
         $datosValidos = $request->validated();
-        // Guardar contraseña temporal antes de cifrarla
+
         $passwordTemporal = Str::random(8);
 
-        // Crear usuario
         $user = User::create([
             'nombre' => $datosValidos['nombre_cliente'],
             'documento' => $datosValidos['documento'],
@@ -41,7 +40,6 @@ class ClienteController extends Controller
         $datosValidos['user_id'] = $user->id;
         Cliente::create($datosValidos);
 
-        // Enviar correo con credenciales
         Mail::to($datosValidos['correo_cliente'])->send(
             new BienvenidaClienteMail(
                 $datosValidos['nombre_cliente'],
@@ -54,9 +52,8 @@ class ClienteController extends Controller
             ->with('success', 'Cliente registrado y credenciales enviadas por correo.');
     }
 
-    public function update(ClienteRequest $request, Mecanico $mecanico)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $cliente = Cliente::findOrFail($id);
         $cliente->update($request->validated());
 
         return redirect()->route('cliente.index')

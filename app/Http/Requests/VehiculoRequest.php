@@ -13,7 +13,7 @@ class VehiculoRequest extends FormRequest
 
     public function rules(): array
     {
-        $id = $this->route('vehiculo')?->id;
+        $id = $this->route('vehiculo');
 
         return [
             'placa' => 'required|unique:vehiculos,placa,'.$id,
