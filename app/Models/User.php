@@ -39,10 +39,6 @@ class User extends Authenticatable
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    
-
-   
-
     /**
      * The attributes that should be hidden for serialization.
      *

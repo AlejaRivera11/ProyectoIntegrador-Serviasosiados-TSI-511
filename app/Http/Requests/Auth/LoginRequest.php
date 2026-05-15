@@ -39,12 +39,32 @@ class LoginRequest extends FormRequest
      *
      * @throws ValidationException
      */
+    // public function authenticate(): void
+    // {
+
+    //     $this->ensureIsNotRateLimited();
+
+    //     if (! Auth::attempt($this->only('documento', 'password', 'estado'), $this->boolean('remember'))) {
+    //         RateLimiter::hit($this->throttleKey());
+
+    //         throw ValidationException::withMessages([
+    //             'documento' => 'El documento o contraseña son incorrectos.',
+    //         ]);
+    //     }
+
+    //     RateLimiter::clear($this->throttleKey());
+    // }
+
     public function authenticate(): void
     {
-
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('documento', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt([
+            'documento' => $this->documento,
+            'password' => $this->password,
+            'estado' => 'activo',
+        ], $this->boolean('remember'))) {
+
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

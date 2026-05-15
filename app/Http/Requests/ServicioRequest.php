@@ -13,22 +13,27 @@ class ServicioRequest extends FormRequest
 
     public function rules(): array
     {
-        $id = $this->route('servicio')?->id;
+        // $id = $this->route('servicio')?->id;
+        $id = $this->route('servicio');
+
+        if (is_object($id)) {
+            $id = $id->id;
+        }
 
         return [
-            'nombre'      => 'required|unique:servicios,nombre,'.$id,
+            'nombre' => 'required|unique:servicios,nombre,'.$id,
             'descripcion' => 'required',
-            'tiempo'      => 'required',
+            'tiempo' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nombre.required'      => 'El nombre del servicio es obligatorio.',
-            'nombre.unique'        => 'Este servicio ya esta registrado.',
+            'nombre.required' => 'El nombre del servicio es obligatorio.',
+            'nombre.unique' => 'Este servicio ya esta registrado.',
             'descripcion.required' => 'La descripcion es obligatoria.',
-            'tiempo.required'      => 'El tiempo estimado es obligatorio.',
+            'tiempo.required' => 'El tiempo estimado es obligatorio.',
         ];
     }
 }

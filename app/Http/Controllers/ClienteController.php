@@ -54,9 +54,8 @@ class ClienteController extends Controller
             ->with('success', 'Cliente registrado y credenciales enviadas por correo.');
     }
 
-    public function update(ClienteRequest $request, Mecanico $mecanico)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $cliente = Cliente::findOrFail($id);
         $cliente->update($request->validated());
 
         return redirect()->route('cliente.index')
