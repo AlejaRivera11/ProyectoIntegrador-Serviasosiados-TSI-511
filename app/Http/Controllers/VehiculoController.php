@@ -19,11 +19,11 @@ class VehiculoController extends Controller
     {
         $datosValidos = $request->validated();
 
-        $clientes = Cliente::where('documento', $datosValidos['cliente_id'])->first(); // Buscar el cliente por document
+        $clientes = Cliente::where('documento', $datosValidos['cliente_id'])->first(); 
         if (! $clientes) {
             return redirect()->back()->with('error', 'No existe un cliente con ese documento.');
         }
-        $datosValidos['cliente_id'] = $clientes->id;   // Reemplazar el documento por el id real
+        $datosValidos['cliente_id'] = $clientes->id;   
         Vehiculo::create($datosValidos);
 
         return redirect()->route('vehiculo.index')
